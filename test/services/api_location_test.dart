@@ -73,14 +73,14 @@ void main() {
 
       final mockResponseNotFound = jsonEncode({'results': []});
 
-      when(mockClient.get(Uri.parse('${Api.dataLocation}/?name=Earth')))
+      when(mockClient.get(Uri.parse('${Api.dataLocation}?name=Earth')))
           .thenAnswer((_) async => http.Response(mockResponseFound, 200));
 
       final foundResults = await apiService.searchLocations('Earth');
       expect(foundResults, isA<List<Location>>());
       expect(foundResults[0].name, equals('Earth'));
 
-      when(mockClient.get(Uri.parse('${Api.dataLocation}/?name=Unknown')))
+      when(mockClient.get(Uri.parse('${Api.dataLocation}?name=Unknown')))
           .thenAnswer((_) async => http.Response(mockResponseNotFound, 200));
 
       final notFoundResults = await apiService.searchLocations('Unknown');

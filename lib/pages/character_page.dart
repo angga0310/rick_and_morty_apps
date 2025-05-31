@@ -72,7 +72,7 @@ class _CharacterPageState extends State<CharacterPage> {
                 child: Row(
                   children: [
                     // Greeting text
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(12.0),
                       child: Text(
                         'Welcome to the\nRick and Morty\nUniverse!',
@@ -81,6 +81,12 @@ class _CharacterPageState extends State<CharacterPage> {
                           fontFamily: "Rick",
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                                offset: Offset(0, 4),
+                                blurRadius: 8,
+                                color: Color(0xFF60C43E).withOpacity(1.00))
+                          ],
                         ),
                       ),
                     ),

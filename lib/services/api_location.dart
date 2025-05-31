@@ -24,7 +24,7 @@ class ApiServiceLocation {
   // Search locations by name
   Future<List<Location>> searchLocations(String name) async {
     final response =
-        await client.get(Uri.parse('${Api.dataLocation}/?name=$name'));
+        await client.get(Uri.parse('${Api.dataLocation}?name=$name'));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);

@@ -80,15 +80,14 @@ void main() {
 
       final mockResponseNotFound = jsonEncode({'results': []});
 
-      when(mockClient.get(Uri.parse('${Api.dataCharacter}/?name=Rick')))
+      when(mockClient.get(Uri.parse('${Api.dataCharacter}?name=Rick')))
           .thenAnswer((_) async => http.Response(mockResponseFound, 200));
+      when(mockClient.get(Uri.parse('${Api.dataCharacter}?name=Unknown')))
+          .thenAnswer((_) async => http.Response(mockResponseNotFound, 200));
 
       final foundResults = await apiService.searchCharacters('Rick');
       expect(foundResults, isA<List<Character>>());
       expect(foundResults[0].name, equals('Rick Sanchez'));
-
-      when(mockClient.get(Uri.parse('${Api.dataCharacter}/?name=Unknown')))
-          .thenAnswer((_) async => http.Response(mockResponseNotFound, 200));
 
       final notFoundResults = await apiService.searchCharacters('Unknown');
       expect(notFoundResults, equals([]));

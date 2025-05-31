@@ -24,7 +24,7 @@ class ApiServiceCharacter {
   // Search characters by name
   Future<List<Character>> searchCharacters(String name) async {
     final response =
-        await client.get(Uri.parse('${Api.dataCharacter}/?name=$name'));
+        await client.get(Uri.parse('${Api.dataCharacter}?name=$name'));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);

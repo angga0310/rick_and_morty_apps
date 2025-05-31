@@ -72,14 +72,14 @@ void main() {
 
       final mockResponseNotFound = jsonEncode({'results': []});
 
-      when(mockClient.get(Uri.parse('${Api.dataEpisode}/?name=Pilot')))
+      when(mockClient.get(Uri.parse('${Api.dataEpisode}?name=Pilot')))
           .thenAnswer((_) async => http.Response(mockResponseFound, 200));
 
       final foundResults = await apiService.searchEpisodes('Pilot');
       expect(foundResults, isA<List<Episode>>());
       expect(foundResults[0].name, equals('Pilot'));
 
-      when(mockClient.get(Uri.parse('${Api.dataEpisode}/?name=Unknown')))
+      when(mockClient.get(Uri.parse('${Api.dataEpisode}?name=Unknown')))
           .thenAnswer((_) async => http.Response(mockResponseNotFound, 200));
 
       final notFoundResults = await apiService.searchEpisodes('Unknown');

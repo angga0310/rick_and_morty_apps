@@ -24,7 +24,7 @@ class ApiServiceEpisode {
   // Search episodes by name
   Future<List<Episode>> searchEpisodes(String name) async {
     final response =
-        await client.get(Uri.parse('${Api.dataEpisode}/?name=$name'));
+        await client.get(Uri.parse('${Api.dataEpisode}?name=$name'));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
